@@ -1,3 +1,4 @@
+-- DATABASE NAME
 USE uc_davis;
 
 -- MAIN TABLE
@@ -19,9 +20,9 @@ CREATE TABLE IF NOT EXISTS sports_stats (
 
 
 -- MEDAL TABLE
-CREATE TABLE IF NOT EXISTS medal (
+CREATE TABLE IF NOT EXISTS medals (
     medal_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    medal_type VARCHAR(20) NOT NULL
+    medal_type VARCHAR(20)
 );
 
 
@@ -38,22 +39,46 @@ CREATE TABLE IF NOT EXISTS events (
 -- SPORTS TABLE
 CREATE TABLE IF NOT EXISTS sports (
     sport_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    sport_name VARCHAR(50)
+    season_id INT
+    sport_name VARCHAR(50),
+    FOREIGN KEY (season_id)
+        REFERENCES seasons (season_id)
 );
 
 
 -- GAME TABLE
-CREATE TABLE IF NOT EXISTS game (
+CREATE TABLE IF NOT EXISTS games (
     game_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    city_name VARCHAR(50) NOT NULL,
-    season VARCHAR(50) NOT NULL
+    city_id VARCHAR(50),
+    season_id ID,
+    year INT,
+    FOREIGN KEY (season_id)
+        REFERENCES seasons (season_id),
+
+    FOREIGN KEY (city_id)
+        REFERENCES cities (city_id)
+);
+
+
+-- SEASONS TABLE
+CREATE TABLE IF NOT EXISTS seasons (
+    season_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    season_name VARCHAR(30)
+);
+
+
+
+-- CITIES TABLE
+CREATE TABLE IF NOT EXISTS cities (
+    city_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    city_name VARCHAR(20)
 );
 
 
 -- ATHLETE TABLE
-CREATE TABLE IF NOT EXISTS athlete (
+CREATE TABLE IF NOT EXISTS athletes (
     athlete_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    noc_id INT NOT NULL,
+    noc_id INT,
     athlete_name VARCHAR(30),
     athlete_gender VARCHAR(10),
     FOREIGN KEY (noc_id)
@@ -62,14 +87,14 @@ CREATE TABLE IF NOT EXISTS athlete (
 
 
 -- NOC TABLE
-CREATE TABLE IF NOT EXISTS noc (
+CREATE TABLE IF NOT EXISTS nocs (
     noc_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    noc_name VARCHAR(20) NOT NULL
+    noc_name VARCHAR(20)
 );
 
 
 -- TEAM TABLE
-CREATE TABLE IF NOT EXISTS team (
+CREATE TABLE IF NOT EXISTS teams (
     team_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     noc_id INT,
     team_name VARCHAR(100),
