@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS sports (
 CREATE TABLE IF NOT EXISTS games (
     game_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     city_id VARCHAR(50),
-    season_id ID,
+    season_id INT,
     year INT,
     FOREIGN KEY (season_id)
         REFERENCES seasons (season_id),
