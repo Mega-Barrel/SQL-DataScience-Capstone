@@ -4,7 +4,7 @@ USE uc_davis;
 -- Displaying the total tables
 SHOW TABLES;
 
-SELECT DISTINCT * FROM regions;
+SELECT DISTINCT * FROM country;
 
 SELECT * FROM athlete_events LIMIT 20;
 
@@ -42,11 +42,11 @@ SELECT `Sex`, COUNT(DISTINCT(`Sex`)) AS `Gender` FROM athlete_events
 GROUP BY `Sex`;
 
 
-SELECT DISTINCT(`Name`), `Sex`, regions.NOC, `Games`, `Year`
-FROM regions
+SELECT DISTINCT(`Name`), `Sex`, country.NOC, `Games`, `Year`
+FROM country
 INNER JOIN athlete_events
 ON
-regions.NOC = athlete_events.NOC
+country.NOC = athlete_events.NOC
 WHERE athlete_events.NOC = 'USA'
 AND `Sport` = 'Football';
 
