@@ -32,7 +32,7 @@ print('Finished storing CSV file to MySQL database!')
 
 
 regions.to_sql(
-    'regions',
+    'country',
     con = engine,
     index = False,
     if_exists = 'append'
