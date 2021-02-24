@@ -1,3 +1,6 @@
+-- Creating the Database
+CREATE DATABASE IF NOT EXISTS uc_davis;
+
 -- DATABASE NAME
 USE uc_davis;
 
@@ -91,10 +94,14 @@ CREATE TABLE IF NOT EXISTS regions (
 CREATE TABLE IF NOT EXISTS athletes (
     athlete_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     region_id INT,
+    game_id INT,
     athlete_name VARCHAR(100),
     athlete_gender VARCHAR(100),
     FOREIGN KEY (region_id)
-        REFERENCES regions (region_id)
+        REFERENCES regions (region_id),
+    
+    FOREIGN KEY (game_id)
+        REFERENCES games (game_id)
 );
 
 
