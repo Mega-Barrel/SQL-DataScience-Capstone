@@ -104,6 +104,8 @@ CREATE TABLE IF NOT EXISTS athletes (
         REFERENCES games (game_id)
 );
 
+ALTER TABLE athletes MODIFY COLUMN athlete_name VARCHAR(600);
+
 
 -- TEAM TABLE
 CREATE TABLE IF NOT EXISTS teams (
