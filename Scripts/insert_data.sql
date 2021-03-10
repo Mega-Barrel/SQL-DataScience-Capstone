@@ -84,8 +84,8 @@ JOIN
 	medals m ON a.Medal = m.medal_type
 JOIN
 	events e ON a.Event = e.event_name
-JOIN
+JOIN	
 	games g ON a.Year = g.year
 JOIN
 	athletes at ON a.Sex = at.athlete_gender
-GROUP BY a.Age, a.Height, a.Weight;
+GROUP BY a.Age;
